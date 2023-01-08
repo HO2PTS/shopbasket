@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+BackOffice
+{% endblock %}
+
+{% block body %}
+
+<div class="container w-75 my-5">
+{% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center">{{ message }}</div>
+{% endfor %}
+    <div class="row">
+    {% for membre in membres %}
+        <div class="col-md-5 border m-2">
+        <h4 class="card-title text-center my-1"> {{ membre.pseudo }} </h4>
+        <div class="d-flex justify-content-center my-1">
+            <img src="{{ asset('uploads/photo_membre/' ~ membre.photo) }}" style="height: 150 px; width: 150px; border-radius: 40%;" alt="">
+        </div>
+        <br>
+            <div class="row"> 
+                <div class="text-center">
+                    <p class="card-text"> Prénom : {{ membre.prenom}}</p>
+                    <p class="card-text"> Nom : {{ membre.nom}}  </p>
+                    <p class="card-text"> Civilité : {{ membre.civilite}} </p>
+                    <p class="card-text"> Email : {{ membre.email}}  </p>
+                    <p class="card-text"> Téléphone {{ membre.telephone}} </p>
+                    <p class="card-text"> Adresse : {{ membre.adresse}} </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card-body text-center">
+                <a href=" {{ path('admin_edit_membre', {
+                    id: membre.id
+                }) }} " class="text-dark"> Modifier </a> &nbsp|&nbsp
+                <a onclick="return confirm('voulez-vous supprimer ce membre?')" href=" {{ path('admin_delete_membre', {
+                    id: membre.id
+                }) }}" class="text-dark"> Supprimer </a>
+            </div>
+        </div>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

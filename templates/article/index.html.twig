@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<section class="home-blog bg-sand">
+        <div class="imageHome">
+            <section class="sec1">
+                <div class="block1">
+                    <h4>Hello, Bienvenue dans l'espace dédié aux  </h4> 
+                    <h1> NEWS NBA de : BasketBall-Universe.</h1>
+                </div>
+            </section>
+        </div>
+    <div class="container">
+		<div class="row ">
+        {% for item in articles %}
+			<div class="col-lg-4 col-md-6 mb-2-6 mt-4">
+                <article class="card card-style2">
+                    <div class="card-img">
+                        <img class="rounded-top" src="{{ asset('uploads/photo_article/' ~ item.photo) }}" style="height: 380; width: 100%; object-fit: contain;"alt="...">
+                        
+                    </div>
+                    <div class="card-body">
+                        <h3><a href="{{ path('show_article',  {id: item.id} )  }}"> {{ item.titre }} </a></h3>
+                        <h3> Citation du joueur: <h4> " {{ item.citation }} "</h4></h3>
+                        <hr>
+                        <h4><i class="fa-solid fa-clock"></i></a> Ecrit le : {{ item.dateenregistrement|date("d/m/Y") }}</h4>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

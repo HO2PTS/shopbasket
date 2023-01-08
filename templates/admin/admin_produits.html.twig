@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+
+<div class="container w-75">
+<h1 class="text-center mt-3 mb-3"> BACKOFFICE Les Maillots en vente </h1>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center"> {{ message }}</div>
+{% endfor %}
+
+<div class="d-flex justify-content-center my-4">
+    <a class="btn btn-primary" href="{{ path('admin_create_produit') }}"> Ajouter un produit à la boutique </a>
+</div>
+<div class="row">
+    {% for item in produits %}
+    <div class="d-fex flex-column col-md-5 border p-2">
+        <div class="product-item text-center">
+            <div class="my-2">
+                <img src="{{ asset('uploads/photo_produit/' ~ item.photo) }}" style="width: 100px; height: 150px;">
+            </div>
+                <h4 class="articleTitle"> {{ item.titre }}  </h4>
+                <br>
+                <p class="border border-dark p-4 fs-5" style="border-radius: 20px;">  {{ item.description }} </p>
+                <p  class="fs-5" >Team : {{ item.team }} </p>
+                <p  class="fs-5" > Prix : {{ item.prix }} €</p>
+                <p  class="fs-5" > Taille : {{ item.taille }} </p>
+            <div>
+                <a href=" {{ path('admin_edit_produit', {
+                    id: item.id
+                }) }} " class="text-dark mx-2"> Modifier </a> |
+                <a href=" {{ path('admin_delete_produit', {
+                    id: item.id
+                }) }} " class="text-dark"> Supprimer </i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}

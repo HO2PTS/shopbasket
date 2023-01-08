@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Changer vos Informations {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h1 class="my-4 text-center"> Changez vos informations </h1>
+    <p class="text-center"> Pour retourner en arrière , si vous ne voulez rien modfiez : <a href="{{path('app_account')}}"> Cliquez-ici </a> </p>
+    {{ form_start(registrationForm) }}
+    <div class="row"> 
+        <div class="col-md-8"> {{ form_row(registrationForm.pseudo) }} </div>
+        <div class="col-md-4"> {{ form_row(registrationForm.civilite) }} </div>
+        <div class="col-md-6"> {{ form_row(registrationForm.prenom) }} </div>
+        <div class="col-md-6"> {{ form_row(registrationForm.nom) }} </div>
+        <div class="col-md-5"> {{ form_row(registrationForm.telephone) }} </div>
+        <div class="col-md-7"> {{ form_row(registrationForm.email) }} </div>
+        <div class="col-md-12"> {{ form_row(registrationForm.adresse) }} </div>
+        <div class="col-md-12"> {{ form_row(registrationForm.description) }} </div>
+        <div class="col-md-6">  {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }} </div>
+        <div class="col"> {{ form_row(registrationForm.photo) }} </div>
+    </div>
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

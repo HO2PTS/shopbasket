@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<h1 class="text-center mt-3 mb-3"> BACKOFFICE Articles </h1>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center"> {{ message }} </div>
+{% endfor %}
+<div class="row mx-2" style="margin-top: 10%;">
+    {% for item in articles %}
+    <div class="d-fex flex-column col-md-4 border p-2">
+        <div class="product-item text-center">
+            <img src="{{ asset('uploads/photo_article/' ~ item.photo) }}" style="width: 150px; border-radius: 10px;">
+            <p class="articleTitle"> {{ item.titre }} </p>
+            <a class="boutonConnexion mb-3 p-1"  href="{{ path('show_article',  {id: item.id} )  }}"> Voir Paragraphe </a> 
+            {# {{ item.description}}  #}
+            <p class="mt-3 fs-5"> <p class="fs-5" style="text-decoration: underline;"> Citation: </p>" {{ item.citation }} " </p>
+            <div>
+                <a href=" {{ path('admin_edit_article', {
+                    id: item.id
+                }) }} " class="text-dark fs-5 mx-2"> <i class="fas fa-edit"></i> </a>
+                <a href=" {{ path('admin_delete_article', {
+                    id: item.id
+                }) }} " class="text-dark fs-5"> <i class="fas fa-trash "></i></a>
+            </div>
+            {{ item.dateenregistrement| date("d/m/Y à H:i:s") }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="d-flex justify-content-center my-3">
+<a class="boutonConnexion btn" href="{{ path('admin_create_article') }}"> Créer un article </a>
+</div>
+</div>
+
+{% endblock %}

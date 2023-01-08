@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+
+<h1 class="text-center mt-3 mb-3"> BACKOFFICE Catégorie </h1>
+    <div class="col-md-4 pt-5 text-center">
+        <h3> Nom Catégorie : </h3> 
+    </div>
+    <div class="col-md-7 pt-4 text-center">
+
+        {% for item in categories %}
+
+        <h4> {{ item.name }} </h4>  
+
+        {% endfor %}
+    </div>
+</div>
+<div class="text-center my-5">
+<a class="boutonConnexion " href="{{ path('admin_create_category') }}"> Créer une catégorie </a></div>
+</div>
+{% endblock %}

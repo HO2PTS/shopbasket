@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes {% endblock %}
+
+{% block body %}
+
+    <div class="container w-50">
+
+        <h1> Ma Commandes {{ order.reference }} </h1>
+
+        <a href=" {{ path('account_order') }} "> Retour </a>
+
+        <hr>
+
+        <p>Commande passé le : {{ order.createdAt|date('d/m/Y') }}</p> 
+        <p>  Numéro de commande : {{ order.reference }} </p>
+        <p> Transporteur choisis: {{ order.carriername }} </p>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Quntité</th>
+                <th scope="col">Prix Unitaire</th>
+                <th scope="col">Pix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in order.orderDetails %}
+                
+                <tr>
+                <th scope="row"> {{ product.product }} </th>
+                <td> {{ product.quantity }} </td>
+                <td> {{ product.price }} € </td>
+                <td>{{ product.price * product.quantity }} € </td>
+                </tr>
+                
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <p> Prix Livraison : {{ order.carrierprice }} € </p>
+            <p> Total : {{ order.carrierPrice + order.getTotal }} €  </p>
+        
+        </div>
+
+    </div>
+{% endblock %}

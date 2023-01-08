@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+
+
+<div class=" d-flex flex-column container">
+
+<h1 class="text-center">
+{% if editArticle %}
+
+    BACKOFFICE | Modification de l'article
+
+{% else %}
+
+    BACKOFFICE | Création d'une Annonce
+
+{% endif %}
+</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center"> {{ message }}</div>
+{% endfor %}
+
+
+    {{ form_start(formArticles, {
+        attr: {
+            novalidate: 'novalidate'
+        }
+    }) }}
+    <div class="d-flex flex-column">
+
+    {{ form_row(formArticles.titre) }}
+    {{ form_row(formArticles.description) }}
+    </div>
+    <div class="d-flex flex-column">
+    {{ form_row(formArticles.photo) }}
+    </div>
+    <hr>
+    <div class="d-flex flex-column">
+    {{ form_row(formArticles.citation) }}
+    </div>
+
+    <div style="text-align: center;">
+    <button  type="submit" class="btn btn-primary d-flex justify-content-center"> {% if editArticle %}
+
+        Editer l' Article
+
+    {% else %}
+        
+        Ajouter la Produit
+    {% endif %}  </button>
+    </div>
+</div>
+
+    
+    </button>
+    </div>
+    {{ form_end(formArticles) }}
+</div>
+{% endblock %}

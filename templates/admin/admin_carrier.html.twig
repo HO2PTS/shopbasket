@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center"> {{ message }}</div>
+{% endfor %}
+
+</div>
+
+<h1 class="text-center mt-3 mb-3"> BACKOFFICE Gérer nos transporteurs </h1>
+
+<div class="container">
+<div class="row mx-2">
+    {% for item in carriers %}
+    <div class="d-fex flex-column col-md-4 border p-2">
+        <div class="product-item text-center">
+                <p class="articleTitle"> {{ item.name }}  </p>
+                <p>  {{ item.description }} </p>
+                <p> Prix : {{ item.price }} €</p>
+            <div>
+                <a href=" {{ path('admin_edit_carrier', {
+                    id: item.id
+                }) }} " class="text-dark"> Modifier </a> |
+                <a href=" {{ path('admin_delete_carrier', {
+                    id: item.id
+                }) }} " class="text-dark"> Supprimer </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+<div class="d-flex justify-content-center">
+    <a class="btn btn-primary" href="{{ path('admin_create_carrier') }}"> Créer un Transporteur </a>
+</div>
+</div>
+{% endblock %}

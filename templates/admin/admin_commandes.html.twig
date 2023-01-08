@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Commandes {% endblock %}
+
+{% block body %}
+
+<div style="margin: 50px 10px;">
+
+        <h1 class="text-center"> Commandes </h1>
+
+       <div class="row">
+        {% if orders|length == 0 %}
+            <p> Vous n'avez pas de commandes. </p>
+            
+        {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Référence</th>
+                <th scope="col"> Effectué Le : </th>
+                <th scope="col"> Adresse : </th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                   
+                    <tr class="my-auto">
+                        <td> N° : {{ order.reference }}  </td>
+                        <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ order.delivery|raw }}</td>
+                        <td> {{ order.carrierPrice + order.getTotal }} € </td>
+                        <td class="text-right"> <a href="{{ path('show_order', {'reference': order.reference }) }}"> Voir commande </a>  </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+                
+        {% endif %}
+       </div>
+
+</div>
+{% endblock %}
+

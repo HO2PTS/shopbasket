@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon Compte {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+
+    {% for message in app.flashes('success') %}
+    <div class="container">
+        <div class="alert alert-success text-center"> {{ message }} </div>
+    </div>
+    {% endfor %}
+    <div class="container">
+        <div class="row text-center">
+            <h1 class="col-md-12 text-center"> Espace Personnel </h1>
+            <br>
+            <h3 style="text-decoration: underline"> {{ app.user.prenom}} </h3> <h4 class="col-md-12">  Bienvenue votre Espace Personnel. C'est dans cet espace que vous allez pouvoir ajouter vos adresses de livraisons. Suivre vos commandes et modifier vos informations </h4>
+            <hr>
+            <div class="col-md-4  my-4"> 
+                <h3 style="text-decoration: underline"> Votre Photo de Profil : </h3>
+                <img src="{{ asset('uploads/photo_membre/' ~ app.user.photo) }}" style="height: 150px; width: 150px; border-radius: 40%;"alt=""> 
+            </div>
+            <div class="col-md-8 my-4">
+                <h3 style="text-decoration: underline"> Votre Description : </h3>
+                <p class="fs-5"> {{ app.user.description }} </p>
+            </div>
+            <h3 class="my-5" style="text-decoration: underline"> Vos Actions : </h3>
+            <div class="col-md-4 mb-4">
+                <a class="boutonConnexion" href="{{ path('edit_membre', {id: app.user.id}) }}"> Changer vos informations </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a class="boutonConnexion" href="{{ path('account_order') }}"> Mes commandes </a> <br>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a class="boutonConnexion" href="{{ path('app_adress', {id: app.user.id }) }}"> Modifier mes adresses </a> <br>
+            </div>
+            <hr>
+        
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Voir Produit {% endblock %}
+
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center"> {{ message }} </div>
+{% endfor %}
+<div class="container">
+    {% for article in article %}
+    <div class="row mt-5">
+        <h1 class="p-2"> {{ article.titre }} </h1>
+        <div class="col-md-4">
+            <img src="{{ asset('uploads/photo_article/' ~ article.photo) }}" alt=" {{ article.titre }} " class="img-fluid">
+        </div>
+        <div class="col-md-8 p-5">
+            <hr>
+            <h2 style="text-decoration: underline;"class="p-2"> Contenue de l'article : </h2>
+            <h4  class="p-2"> {{ article.description|raw  }} </h4>
+        </div>
+    </div>
+
+        {# <div class="col-md-4">
+            <p> {{ article.description|raw }} </p>
+        </div>
+    </div> #}
+    {% endfor %}
+</div>
+
+{% endblock %}

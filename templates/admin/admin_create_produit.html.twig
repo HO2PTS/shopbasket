@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+
+
+<div class=" d-flex flex-column container">
+
+<h1 class="text-center mt-3 mb-3"> BACKOFFICE Créer un produit </h1>
+    {{ form_start(formProduits, {
+        attr: {
+            novalidate: 'novalidate'
+        }
+    }) }}
+    <div class="d-flex flex-column">
+
+    {{ form_row(formProduits.titre) }}
+    {{ form_row(formProduits.taille) }}
+    </div>
+    <div class="d-flex flex-column">
+    {{ form_row(formProduits.photo) }}
+    </div>
+    <hr>
+    <div class="d-flex flex-column">
+    {{ form_row(formProduits.description) }}
+    </div>
+    <hr>
+    <div class="d-flex flex-column"> 
+    {{ form_row(formProduits.team) }}
+    {{ form_row(formProduits.prix) }}
+    {{ form_row(formProduits.category) }}
+    </div>
+
+    <div style="text-align: center;">
+    <button  type="submit" class="btn btn-primary d-flex justify-content-center"> Ajouter le produit </button>
+    </div>
+    {{ form_end(formProduits) }}
+</div>
+{% endblock %}

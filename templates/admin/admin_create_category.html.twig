@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+<h1 class="mt-3 text-center"> Créer un Transporteur </h1>
+
+
+
+<div class="container">
+    {{ form_start(formCategory, {
+        attr: {
+            novalidate: 'novalidate'
+        }
+    }) }}
+
+    <div class="row">
+        <div class="col-md-10">
+            {{ form_row(formCategory.name) }}
+        </div>
+        <button  type="submit" class="btn btn-primary d-flex justify-content-center"> Changer catégorie </button>
+        {{ form_end(formCategory) }}
+    </div>
+</div>
+{% endblock %}

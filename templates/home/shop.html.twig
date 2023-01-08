@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Notre Shop {% endblock %}
+{% block stylesheets %}
+<style>
+
+    .image img {
+        height: 80vh; object-fit: cover;
+    }
+    .imageProduit{
+        height: 250px;
+        width: 300px;
+    }
+@media only screen and (max-width: 1100px){
+    .blockShop{
+        margin-bottom: -350px;
+    }
+    .image img {
+        height: 70vh;
+    }
+    .content{
+        margin-top: 270px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .blockShop{
+        margin-bottom: -350px;
+    }
+    .image img {
+        height: 70vh;
+    }
+    .filter-bar{
+        padding-left: 100px;
+        margin-top: -200px;
+    }
+    .content {
+        margin-left: -15px;
+    }
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center"> {{ message }} </div>
+{% endfor %}
+<div class="imageHome">
+    <section class="sec1">
+        <div class="block1">
+            <h4>Hello, Bienvenue sur le : </h4> 
+            <h1> SHOP BASKETBALL-UNIVERSE.</h1>
+        </div>
+    </section>
+    </div>
+<div class="content">
+    <div class="filter-bar">
+        <div class="container d-flex justify-content-md-center my-4 fs-5">
+            <li class="nav-item dropdown" style="list-style: none;">
+                    <a class="nav-link dropdown-toggle btn btn-info text-light  p-2" style="color: black" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Type de Maillot </a>
+                        <div class="dropdown-menu">
+                        <a class="btn" href=" {{ path('app_shop') }} "> Tous les mailots </a>
+                        <a class="btn" href="{{ path('app_category', { name: 'maillot_neuf'}) }}"> Saison 2022/2023 </a>
+                        <a class="btn" href="{{ path('app_category', { name: 'maillot_vintage'}) }}"> Maillot Vintage </a> 
+                        {# <a class="dropdown-item" href=" {{ path('admin_category')}}"> Catégories </a> #}
+                    </div>
+            </li>
+        </div>
+    </div>
+    <div class="container">
+        {% for produit in produits %}
+            <div class="card-style">
+                <div class="col-sm-12 col-md-4 me-2 ms-2 mx-4 my-3" style="width: 100%;" id="card">
+                    <div class="card-header"> 
+                        <h4>{{ produit.titre }} </h4>
+                    </div>
+                        <img class="imageProduit" src="{{ asset('uploads/photo_produit/' ~ produit.photo) }}" alt="Photo Maillot">
+                    <div class="card-body">
+                        <div class="taille">
+                            <p> Taille : </p> <h4 class="card-title" style="text-align: center"> {{ produit.taille }}</h4>
+                        </div>
+                        <div class="team">
+                            <h4 class="card-title text-black"> {{ produit.team }}</h4>
+                        </div>
+                        <div class="prix">
+                            <h4 class="card-title text-black" style="font-size: 2em"> {{ produit.prix }} € </h4>
+                        </div>
+                        <div class="show">
+                            <a class="btn" href="{{ path('show_product', {id: produit.id}) }}" style="width: 100%; border-radius: 10px;"> Voir </a>
+                        </div>
+                        
+                        <div class="ajouter">
+                            <a class="btn" href="{{ path('cart_adding', {id: produit.id}) }}" style="width: 100%; border-radius: 10px;">Ajouter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="panier">
+        <a href=" {{ path('cart') }}"  class="m-4" style="font-size: 3em"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+</div>
+{% endblock %}

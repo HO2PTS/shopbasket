@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une adresse {% endblock %}
+{% block body %}
+<div class="container">
+
+    <h1> Ajoute une adresses </h1>
+
+    <a href="{{ path('app_account', {id: app.user.id }) }}"> Retour </a>
+    
+    <hr>
+    {{ form_start(formAdress) }}
+        {{ form_row(formAdress.name) }} 
+        <div class="row">
+            <div class="col-md-6">{{ form_row(formAdress.firstName) }} </div>
+            <div class="col-md-6">{{ form_row(formAdress.lastName) }} </div>
+            <div class="col-md-9">{{ form_row(formAdress.adress) }} </div>
+            <div class="col-md-3">{{ form_row(formAdress.postal) }} </div>
+            <div class="col-md-6">{{ form_row(formAdress.city) }} </div>
+            <div class="col-md-6">{{ form_row(formAdress.country) }} </div>
+            <div class="d-flex justify-content-center my-3"> {{ form_row(formAdress.submit) }} </div>
+        </div>
+    {{ form_end(formAdress) }}
+    
+
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+
+
+
+<div class=" d-flex flex-column container">
+
+<h1 class="text-center">
+{% if editMode %}
+
+    BACKOFFICE | Modification de l'annonce
+
+{% else %}
+
+    BACKOFFICE | Création d'une Annonce
+
+{% endif %}
+</h1>
+    {{ form_start(formProduits, {
+        attr: {
+            novalidate: 'novalidate'
+        }
+    }) }}
+    <div class="d-flex flex-column">
+
+    {{ form_row(formProduits.titre) }}
+    {{ form_row(formProduits.taille) }}
+    </div>
+    <div class="d-flex flex-column">
+    {{ form_row(formProduits.photo) }}
+    {{ form_row(formProduits.photo2) }}
+    {{ form_row(formProduits.photo3) }}
+    </div>
+    <hr>
+    <div class="d-flex flex-column">
+    {{ form_row(formProduits.description) }}
+    </div>
+    <hr>
+    <div class="d-flex flex-column"> 
+    {{ form_row(formProduits.team) }}
+    {{ form_row(formProduits.prix) }}
+    {{ form_row(formProduits.category) }}
+    </div>
+
+    <div style="text-align: center;">
+    <button  type="submit" class="btn btn-primary d-flex justify-content-center">  
+
+
+    {% if editMode %}
+
+        Editer la Produit 
+
+    {% else %}
+        
+        Ajouter la Produit
+    {% endif %} 
+    </button>
+    </div>
+    {{ form_end(formProduits) }}
+</div>
+{% endblock %}

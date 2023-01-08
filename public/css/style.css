@@ -1,0 +1,349 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', serif;
+    margin-top: 100px;
+}
+.container{
+    margin-top: 150px;
+}
+nav{
+    display: flex; 
+    align-items :center;
+    padding-top: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    position: fixed;
+    top: -5px;
+    height: 12%;
+    z-index: 4;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 0px 10px #000;
+}
+.logo{
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+}
+span{
+    color: orangered;
+}
+nav ul{
+    padding-top: 15px;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 30px 15px;
+}
+nav ul li a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+nav ul li a:hover{
+    color: orangered;
+    transition: .4s;
+}
+.checkbox{
+    display: none;
+    cursor: pointer;
+}
+#check {
+    display: none;
+    
+    float: right;
+}
+
+@media (max-width: 1060px){
+    label.logo {
+        padding-left: 25px;
+    }
+
+    nav ul li a{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 958px) {
+    body{
+        margin-top: 30px;
+    }
+    .checkbox{
+        display: block;
+        margin-right: 40px;
+    }
+    nav{
+        height: 50px;
+    }
+    ul{
+        position: fixed;
+        width: 100vh;
+        height: 110vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        top: 5%;
+        left: -200%;
+        text-align: center;
+        transition:  all 0.5s;
+    }
+
+    #check:checked ~ ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #FF6600;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+    }
+}
+.boutonInscription{
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin: 0 5px;
+}
+.boutonInscription:hover{
+    color: white;
+    background-color: black;
+    transition: .6s;
+    box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+}
+.boutonConnexion{
+    background-color: orangered;
+    color: white;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 30px;
+}
+.boutonConnexion:hover{
+    color: white;
+    background-color: #0567B0;
+    transition: .6s;
+    box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+}
+.imageHome{
+    height: 80vh;
+}
+.sec1{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items:center;
+    height: 80vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+.sec1::before {
+    content: "";
+    position: absolute;
+    height: 76vh;
+    width: 100%;
+    z-index: 2;
+    background-color: #FF6600;
+    border-radius: 0% 0% 50% 1%;
+    transform: scale(1.03);
+    opacity: .9;
+}
+.sec1::after {
+    content: "";
+    position: absolute;
+    height: 70vh;
+    width: 100%;
+    background-image: url(https://www.fiba.basketball/images.fiba.com/Graphic/A/D/A/8/6krarWsRVkqH7Qm44Z-kug.jpg?v=20200901094913133);
+    z-index: 1;
+    border-radius: 0% 0% 50% 1%;
+    transform: scale(1.03);
+}
+.block1 h4, .block1 h3, .block1 h1{
+    color: white;
+    text-align: center;
+}
+.block1 {
+    
+    z-index: 3;
+}
+.card-style{
+    display:inline-block;
+    margin-left: 20px;
+}
+#card{
+    
+    background-color: white;
+    border: solid orangered 1px;
+    padding: 5px;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    
+}
+
+.ajouter, #register, .show{
+    width: 100%;
+    background-color: #FF6600;
+    margin: 10px 0;
+    border-radius: 20px;
+}
+.ajouter a, #register, .show a{
+    color: white;
+}
+.contain{
+    width: 180px;
+    height: 250px;
+    border-radius: 20px;
+}
+.card-header{
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.card-header > h4{
+    border: 1px solid black;
+    border-radius: 10px;
+    color: white;
+    background-color: black;
+}
+.taille{
+    display: flex; 
+    justify-content: center;
+    margin: 10px;
+    color: black;
+    background-color: white;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+.taille > h4 {
+    margin-left: 5px;
+    color: black;
+}
+#card:hover{
+    box-shadow: black 0px 20px 24px;
+    transform: scale(1.07);
+}
+.articleTitle {
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+.product-item {
+    font-size: 0.7rem;
+}
+#panier {
+    position :absolute;
+    position: fixed;
+    right:10px;
+    border-radius: 50%;
+    bottom: 1px;
+    float: right;
+    margin: 5px;
+    box-shadow: black 0px 5px 10px;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+}
+#panier a{
+    position: relative
+}
+#panier a i{
+    font-size: 1em;
+    top: 20px;
+    right:-50px;
+    position: absolute;
+}
+
+.form-check {
+    background-color: #353535;
+    color: white;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+.col-form-label {
+    font-weight: bold;
+}
+.order-summary {
+    padding: 20px;
+    margin-top: 22px;
+    border: 1px solid #E9EBED ;
+}
+.card-style2 {
+    position: relative;
+    display: flex;
+    transition: all 300ms ease;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    padding: 0;
+    height: 100%;
+}
+.card-style2 .card-img {
+    position: relative;
+    display: block;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.card-style2 .card-img img {
+    transition: all 0.3s linear 0s;
+}
+.card-style2:hover .card-img img {
+    transform: scale(1.05);
+}
+.card-style2 .card-body {
+    position: relative;
+    display: block;
+    background: #ffffff;
+    padding: 2rem;
+}
+.card-style2 .card-body h3, .h5 {
+    margin-bottom: 0.8rem;
+}
+.card-style2 .card-body h3 a, .h5 {
+    color: #004975;
+}
+.card-style2 .card-body h3 a:hover {
+    color: #00baee;
+}
+.card-style2 .card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+    background: transparent;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+.card-style2 .card-footer ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-bottom: 0;
+}
+.card-style2 .card-footer ul li {
+    font-size: 15px;
+}
+.card-style2 .card-footer ul li a {
+    color: #394952;
+}
+.card-style2 .card-footer ul li a:hover {
+    color: #00baee;
+}
+.card-style2 .card-footer ul li i {
+    color: #00baee;
+    font-size: 14px;
+    margin-right: 8px;
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} BackOffice {% endblock %}
+
+{% block body %}
+<h1 class="mt-3 text-center"> Créer un Transporteur </h1>
+
+
+
+<div class="container">
+    {{ form_start(formCarrier, {
+        attr: {
+            novalidate: 'novalidate'
+        }
+    }) }}
+
+    <div class="row">
+        <div class="col-md-10">
+            {{ form_row(formCarrier.name) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(formCarrier.price) }}
+        </div>
+        {{ form_row(formCarrier.description) }}
+        <hr>
+        <button  type="submit" class="btn btn-primary d-flex justify-content-center"> Ajouter le transporteur </button>
+        {{ form_end(formCarrier) }}
+    </div>
+</div>
+{% endblock %}

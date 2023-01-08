@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Paiement de ma commande {% endblock %}
+{% block javascripts %} <script src="https://js.stripe.com/v3/"></script>  {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="text-center my-4">
+        <h2> Récapitulatif de la commande </h2>
+    </div>
+
+    <div class="row"> 
+        <div class="col-md-6">
+            <div class="form-check">
+            
+            <h4 style="color: white;"> Adresse de livraison : </h4>
+            <hr style="color: white;">
+                {{ delivery|raw }}
+            </div>
+            <div class="form-check">
+            <h4 style="color: white;"> Mon Transporteur </h4>
+            <hr style="color: white;">
+            <p> Nom du tansporteur : {{ carrier.name }} </p>
+            <p> Description : {{ carrier.description }} </p>
+            <p> Prix de Livraison : {{ carrier.price }} € </p>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="text-center">
+                <h1 style="font-weight: bold;"> Ma commande : </h1>
+            </div>
+                <div class="order-summary">
+                    {% for item in cart %}
+                    <div class="row my-2">
+                        <div class="col-2">
+                            <img src="{{ asset('uploads/photo_produit/' ~ item.produit.photo) }}" height="75px" alt="{{ item.produit.titre }}">
+                        </div>
+                        <div class="col-md-8 my-auto">
+
+                            <small> {{ item.produit.titre }} 
+                            <br> x {{ item.quantite }} </small>
+                        </div>
+                        <div class="col-2 my-auto">
+                            {{ (item.produit.prix * item.quantite) }} €
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div> <h5> Sous-total : </h5>  <p>{{ total }}  €</p>  </div><br>
+                    <div><h5> Livraison : </h5> <p>  {{ carrier.price }}  €</p></div> 
+                    <a class="boutonConnexion btn mt-5 w-100" id="checkout-button"> Payer | {{ total + carrier.price }} € </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript"> 
+
+        var stripe = Stripe("pk_test_51MGjy5F9M4Y2NwtVh9vXaoR5BfvlS5apAHjifVLrgvx6hgJDcIuZNCrbDLN0NNexsqkIvMLdLhbJrq0RaOvLXJoq00y9NEdX4T");
+        var checkoutButton = document.getElementById("checkout-button");
+        checkoutButton.addEventListener("click", function () {
+            fetch("/commande/create-session/{{ reference }}", {
+                method: "POST",
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: session.id});
+            })
+            .then( function (result) {
+                if (result.error){
+                    alert(result.error.message);
+                }
+            })
+            .catch(function (error) {
+                console.error("Error", error);
+            });
+        });
+
+    </script>
+
+{% endblock %}

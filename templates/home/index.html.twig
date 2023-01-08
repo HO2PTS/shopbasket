@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'Accueill{% endblock %}
+
+
+{% block stylesheets %}
+<style>
+#contenu{
+    display: flex;
+    justify-content: center;
+}
+#linkCart{
+    border: 1px solid orangered;
+    border-radius: 30px;
+}
+#linkNews{
+    border: 1px solid orangered;
+    border-radius: 30px;
+}
+.icon{
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center"> {{ message }} </div>
+{% endfor %}
+    <div class="imageHome">
+        <section class="sec1">
+            <div class="block1">
+                <h4>Hello, Bienvenue sur le site : </h4> 
+                <h1>BasketBall-Universe.</h1>
+                <h3>Un site consacré à la passion du Basket-Ball.</h3>
+                <h4 style="text-decoration: underline;"> Créer par : </h4>
+                <h1 >Hugo Boulhaut </h1> 
+            </div>
+        </section>
+    </div>
+    <section class="container w-75">
+    <div class="sec2">
+    <h1 class="text-center my-4"> Nos Services !</h1>
+        <div class="row" id="contenu">
+            <div class="col-md-4 my-2 mx-4 p-3" id="linkCart"> 
+                <a style="text-decoration: none" href=" {{ path('app_shop') }}">
+                <div class="icon">
+                    <i class="fa-solid fa-cart-shopping p-2" style="color: orangered; font-size: 3em;"></i>
+                </div>
+                    <h4 class="p-2"> Nous proposons un service de vente de maillot Vintage et Actuelle (Moderne). <br> Des Must Have pour tous fan de basket. <br> Vous avez la possibilité de vous faire livré chez vous grâce aux nombreux transporteurs partenaires. </h4>
+                </a>
+            </div>
+            <div class="col-md-4 p-3" id="linkNews">
+                <a style="text-decoration: none" href=" {{ path('cart') }}">
+                <div class="icon">
+                    <i class="fa-solid fa-newspaper p-2" style="color: orangered; font-size: 3em"></i>
+                </div>
+                    <h4 class="p-2"> Un article rédigé par Jour pour suivre toutes les news en NBA. <br> Suivre vos Joueurs / Equipe préféré tous les jours est possible. <br> Retour sur les matchs de la veille, analyse, pas besoin de suivre les matchs à 4h du matin ;). </h4>
+                </a>
+            </div>
+        </div>
+    </section>
+    </div>
+
+{# <div id="panier">
+    <a href=" {{ path('cart') }}"  class="mx-4 w-50" style="font-size: 3em"><i class="fa-solid fa-cart-shopping"></i></a>
+</div> #}
+{% endblock %}

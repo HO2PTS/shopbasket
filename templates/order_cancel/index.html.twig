@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Erreur de la commande {% endblock %}
+
+{% block body %}
+
+<div class="container w-75">
+    <h2 class="text-center"> Erreur de ma commande </h2>
+
+    <p> Bonjour, <p class="bold"> {{ order.user.pseudo}} </p>  <br>
+    La commande n° {{ order.reference }} a échoué. <br>
+    Une confirmation d'erreur vient de vous être envoyé par email à l'adresse {{ order.user.email }} <br>
+    </p>
+    
+</div>
+
+
+{% endblock %}

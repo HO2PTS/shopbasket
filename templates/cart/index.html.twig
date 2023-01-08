@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block stylesheets %}
+<style>
+
+.contenu{
+    border-radius: 20px;
+    margin-top: 70px;
+}
+</style>
+
+{% endblock %}
+
+{% block body %}
+{% if cart|length == 0  %}
+    <div class="container w-100">
+        <div class="contenu">
+
+            <h1> Mon Panier </h1>
+            <p>Retrouvez l'ensemble de vos produits que vous avez ajouté dans votre panier </p>
+            <hr>
+            <h2 class="text-center"> Votre Panier est Vide </h2>
+            <div class="d-flex flex-column text-right my-4">
+
+                <b class="my-2"> Nombre de produits : <b> {{ cart|length }} </b>  </b>  
+                <b class="my-2">  Total de mon panier : {{ total }} € </b> 
+                {% if app.user %}
+            
+                <a href="{{path('app_order')}}" class="btn btn-primary"> Valider votre commande </a>
+                
+                {% else %}
+                    <a href="{{path('app_login')}}" class="btn btn-dark">se connecter pour valider sa commande</a> 
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    {% else %}
+        
+    <div class="container w-100">
+        <div class="contenu">
+
+            <h1> Mon Panier </h1>
+            <p>Retrouvez l'ensemble de vos produits que vous avez ajouté dans votre panier </p>
+
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Produit</th>
+                <th scope="col"></th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in cart %}
+            
+            <tr>
+                <th>
+                    <img src="{{ asset('uploads/photo_produit/' ~ item.produit.photo) }}" height="75px" alt="{{ item.produit.titre }}">
+                </th>
+                <td> <small> {{ item.produit.titre }} </small> </td>
+                <td>
+                    <a href="{{path('cart_decrease', {id: item.produit.id} )}}"><i class="fas fa-minus mx-2"></i></a> 
+                        {{ item.quantite }} 
+                    <a href="{{path('cart_adding', {id: item.produit.id} )}}"><i class="fas fa-plus mx-2"></i></a> 
+                </td> 
+                <th> {{ item.produit.prix }} € </th>
+            </tr>
+            
+            {% endfor %}
+            </tbody>
+            </table>
+            <div class="d-flex flex-column text-right">
+
+                <b class="my-2"> Nombre de produits : <b> {{ cart|length }} </b>  </b>  
+                <b class="my-2">  Total de mon panier : {{ total }} € </b> 
+                {% if app.user %}
+            
+                <a href="{{path('app_order')}}" class="btn btn-primary"> Valider votre commande </a>
+                
+                {% else %}
+                    <a href="{{path('app_login')}}" class="btn btn-dark">se connecter pour valider sa commande</a> 
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
